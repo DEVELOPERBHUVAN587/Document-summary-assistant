@@ -465,7 +465,7 @@ def main():
     """, unsafe_allow_html=True)
     
     st.markdown("""
-        <h1 style='font-weight: 800; font-size: 3rem; background: linear-gradient(to right, #fff, #a1a1aa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0px;'>Document Assistant</h1>
+        <h1 style='font-weight: 800; font-size: 3rem; background: linear-gradient(to right, #fff, #a1a1aa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0px;'>Document Summary Assistant</h1>
         <p style='color: #a1a1aa; font-size: 1.1rem; margin-bottom: 2rem;'>Upload any document (PDF, DOCX, CSV, TXT, or Image) up to 25MB to generate intelligent, structured summaries powered by Groq.</p>
     """, unsafe_allow_html=True)
     
