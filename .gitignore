@@ -1,4 +1,15 @@
+# Virtual Environments
 venv/
+env/
+
+# Secrets and API Keys (CRITICAL)
 .env
+
+# Python Cache
 __pycache__/
 *.pyc
+*.pyo
+
+# OS Files
+.DS_Store
+Thumbs.db
