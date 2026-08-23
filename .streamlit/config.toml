@@ -1,0 +1,18 @@
+[theme]
+# The vibrant accent color (Indigo/Purple) for radio buttons, active states, and highlights
+primaryColor = "#8b5cf6"
+
+# The deep dark background (Zinc 950) to seamlessly match the custom CSS mesh
+backgroundColor = "#09090b"
+
+# The slightly lighter dark background (Zinc 900) for the sidebar and native containers
+secondaryBackgroundColor = "#18181b"
+
+# Crisp, readable off-white text (Zinc 50)
+textColor = "#fafafa"
+
+# Base font family (Our CSS injection will elevate this to 'Inter')
+font = "sans serif"
+
+[server]
+maxUploadSize = 25
