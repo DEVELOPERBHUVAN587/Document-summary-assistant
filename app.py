@@ -359,7 +359,7 @@ def generate_csv_summary(text_input):
     return output.getvalue()
 
 def main():
-    st.set_page_config(page_title="Document Summary Assistant", page_icon="⚡", layout="centered")
+    st.set_page_config(page_title="Document Summary Assistant", page_icon="⚡", layout="centered",initial_sidebar_state="expanded")
     
     st.markdown("""
         <style>
