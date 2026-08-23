@@ -359,7 +359,8 @@ def generate_csv_summary(text_input):
     return output.getvalue()
 
 def main():
-    st.set_page_config(page_title="Document Summary Assistant", page_icon="⚡", layout="centered",initial_sidebar_state="expanded")
+    # Forces the sidebar to be open by default
+    st.set_page_config(page_title="Document Summary Assistant", page_icon="⚡", layout="centered", initial_sidebar_state="expanded")
     
     st.markdown("""
         <style>
@@ -379,6 +380,39 @@ def main():
             color: #fafafa !important;
         }
         
+        /* --- BRAND NEW UI UPGRADES --- */
+        /* 1. Make the top header transparent to remove the black bar */
+        header { background: transparent !important; }
+
+        /* 2. Style the ">>" arrow to look like a purple UI button */
+        [data-testid="collapsedControl"] {
+            color: #c084fc !important;
+            background-color: rgba(24, 24, 27, 0.6) !important;
+            border: 1px solid rgba(168, 85, 247, 0.4) !important;
+            border-radius: 8px !important;
+            padding: 0px 12px !important;
+            margin: 15px !important;
+            display: flex !important;
+            align-items: center !important;
+            transition: all 0.3s ease !important;
+        }
+        
+        /* 3. Inject a label next to the ">>" arrow so users know what it is */
+        [data-testid="collapsedControl"]::after {
+            content: "Summary Length";
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-left: 8px;
+        }
+        
+        /* Hover effect for the new button */
+        [data-testid="collapsedControl"]:hover {
+            background-color: rgba(168, 85, 247, 0.2) !important;
+            border-color: #c084fc !important;
+        }
+        /* ----------------------------- */
+
         /* Container */
         .block-container { max-width: 800px !important; padding-top: 3rem !important; }
         
@@ -470,10 +504,10 @@ def main():
     """, unsafe_allow_html=True)
     
     with st.sidebar:
-        st.markdown("<h2 style='color: white; font-size: 1.2rem;'>⚙️ Configuration</h2>", unsafe_allow_html=True)
+        # Changed symbol and text, removed the 'glass-info' section entirely!
+        st.markdown("<h2 style='color: white; font-size: 1.2rem;'>📏 Summary Settings</h2>", unsafe_allow_html=True)
         summary_length = st.radio("Select Summary Length:", ("Short", "Medium", "Long")) 
         st.markdown("<br>", unsafe_allow_html=True)
-        st.markdown('<div class="glass-info">⚡ Built with <b>Streamlit</b>, <b>LangChain</b>, and <b>Groq</b>.</div>', unsafe_allow_html=True)
 
     uploaded_files = st.file_uploader(
         "Drop your document(s) here", 
@@ -481,6 +515,8 @@ def main():
         accept_multiple_files=True, 
         label_visibility="collapsed"
     )
+
+    # (The rest of your code like 'if "final_summary" not in st.session_state:' stays exactly the same)
 
     if "final_summary" not in st.session_state:
         st.session_state.final_summary = None
