@@ -73,6 +73,20 @@ If an unreadable file or an image without parseable text is uploaded, the applic
 <img src="assets/03-validation-error.png" alt="Validation Error" width="800">
 </div>
 
+### 4. Extracted Data & AI-Powered Suggestions
+Beyond the summary, the assistant parses structured details (education, projects, certifications, and more) into a clean table, and follows up with actionable **Improvement Suggestions** to strengthen the source document.
+
+<div align="center">
+<img src="assets/sugggestions.jpeg" alt="Extracted Structured Data and Improvement Suggestions" width="800">
+</div>
+
+### 5. Flexible Export Options
+Once a summary is generated, download it in the format that suits your workflow — Word, PDF, CSV, Markdown, or plain text — all from a single dropdown.
+
+<div align="center">
+<img src="assets/download_summary.jpeg" alt="Download Summary export format options" width="800">
+</div>
+
 ---
 
 ## 🧠 Architecture & Data Flow
@@ -153,7 +167,9 @@ document-summary-assistant/
 ├── assets/                          # Static assets for documentation
 │   ├── 01-homepage.png              # Standard relative path image
 │   ├── 02-summary-output.png        # Standard relative path image
-│   └── 03-validation-error.png      # Standard relative path image
+│   ├── 03-validation-error.png      # Standard relative path image
+│   ├── sugggestions.jpeg            # Extracted data & improvement suggestions
+│   └── download_summary.jpeg        # Export format dropdown & download
 │
 ├── utils/                           # Core logic & helper modules
 │   ├── __init__.py
@@ -337,7 +353,7 @@ Contributions make the open-source community an amazing place to learn, inspire,
 **License:** Distributed under the MIT License. See the `LICENSE` file for more information.
 
 **Author:** Pentapati Leela Vishnu Bhuvan
-**GitHub:** [bhuvan-pentapati](https://github.com/DEVELOPERBHUVAN587) 
+**GitHub:** [bhuvan-pentapati](https://github.com/bhuvan-pentapati) *(update with your actual handle)*
 
 <div align="center">
 
