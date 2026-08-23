@@ -359,16 +359,18 @@ def generate_csv_summary(text_input):
     return output.getvalue()
 
 def main():
-    # Forces the sidebar to be open by default
-    st.set_page_config(page_title="Document Summary Assistant", page_icon="⚡", layout="centered", initial_sidebar_state="expanded")
+    # We removed the sidebar parameter completely
+    st.set_page_config(page_title="Document Summary Assistant", page_icon="⚡", layout="centered")
     
     st.markdown("""
         <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
         html, body, [class*="css"] { font-family: 'Inter', sans-serif !important; }
         
-        /* Hide Defaults */
-        #MainMenu, footer, .stDeployButton { display: none !important; }
+        /* 1. NUKE THE ENTIRE TOP HEADER (Goodbye Deploy button and empty space!) */
+        header, #MainMenu, footer, .stDeployButton, .stAppDeployButton, [data-testid="stToolbar"] { 
+            display: none !important; 
+        }
         
         /* App Background */
         .stApp {
@@ -380,41 +382,11 @@ def main():
             color: #fafafa !important;
         }
         
-        /* --- BRAND NEW UI UPGRADES --- */
-        /* 1. Make the top header transparent to remove the black bar */
-        header { background: transparent !important; }
-
-        /* 2. Style the ">>" arrow to look like a purple UI button */
-        [data-testid="collapsedControl"] {
-            color: #c084fc !important;
-            background-color: rgba(24, 24, 27, 0.6) !important;
-            border: 1px solid rgba(168, 85, 247, 0.4) !important;
-            border-radius: 8px !important;
-            padding: 0px 12px !important;
-            margin: 15px !important;
-            display: flex !important;
-            align-items: center !important;
-            transition: all 0.3s ease !important;
-        }
-        
-        /* 3. Inject a label next to the ">>" arrow so users know what it is */
-        [data-testid="collapsedControl"]::after {
-            content: "Summary Length";
-            font-family: 'Inter', sans-serif;
-            font-weight: 600;
-            font-size: 0.9rem;
-            margin-left: 8px;
-        }
-        
-        /* Hover effect for the new button */
-        [data-testid="collapsedControl"]:hover {
-            background-color: rgba(168, 85, 247, 0.2) !important;
-            border-color: #c084fc !important;
-        }
-        /* ----------------------------- */
-
         /* Container */
         .block-container { max-width: 800px !important; padding-top: 3rem !important; }
+        
+        /* Make the Radio Buttons display side-by-side cleanly */
+        div.row-widget.stRadio > div { flex-direction: row; gap: 20px; }
         
         /* Gradient Button */
         div.stButton > button:first-child {
@@ -445,22 +417,7 @@ def main():
             border-radius: 8px !important;
         }
         
-        /* Sidebar & Expander Details */
-        [data-testid="stSidebar"] { background-color: rgba(9, 9, 11, 0.95) !important; border-right: 1px solid rgba(255,255,255,0.05) !important; }
-        [data-testid="stExpander"] details {
-            background: rgba(24, 24, 27, 0.6) !important;
-            border: 1px solid rgba(255,255,255,0.1) !important;
-            border-radius: 8px !important;
-        }
-        [data-testid="stExpander"] details summary { color: #c084fc !important; font-weight: 600 !important; }
-        
         /* Custom Alert Components */
-        .glass-info {
-            background: rgba(139, 92, 246, 0.15);
-            border: 1px solid rgba(139, 92, 246, 0.3);
-            border-radius: 8px; padding: 12px; color: #e9d5ff; font-size: 0.9rem;
-            backdrop-filter: blur(10px);
-        }
         .glass-success {
             background: rgba(16, 185, 129, 0.15);
             border: 1px solid rgba(16, 185, 129, 0.3);
@@ -503,11 +460,11 @@ def main():
         <p style='color: #a1a1aa; font-size: 1.1rem; margin-bottom: 2rem;'>Upload any document (PDF, DOCX, CSV, TXT, or Image) up to 25MB to generate intelligent, structured summaries powered by Groq.</p>
     """, unsafe_allow_html=True)
     
-    with st.sidebar:
-        # Changed symbol and text, removed the 'glass-info' section entirely!
-        st.markdown("<h2 style='color: white; font-size: 1.2rem;'>📏 Summary Settings</h2>", unsafe_allow_html=True)
-        summary_length = st.radio("Select Summary Length:", ("Short", "Medium", "Long")) 
-        st.markdown("<br>", unsafe_allow_html=True)
+    # 2. BRAND NEW MAIN PAGE SETTINGS!
+    st.markdown("<h3 style='color: #e9d5ff; font-size: 1.1rem; margin-bottom: 0px;'>⚙️ Configure Summary Length:</h3>", unsafe_allow_html=True)
+    # Using horizontal=True lays the options out side-by-side beautifully!
+    summary_length = st.radio("", ("Short", "Medium", "Long"), horizontal=True, label_visibility="collapsed")
+    st.markdown("<br>", unsafe_allow_html=True)
 
     uploaded_files = st.file_uploader(
         "Drop your document(s) here", 
@@ -515,6 +472,8 @@ def main():
         accept_multiple_files=True, 
         label_visibility="collapsed"
     )
+
+    # (Leave the rest of the code exactly as it is starting from `if "final_summary" not in st.session_state:`)
 
     # (The rest of your code like 'if "final_summary" not in st.session_state:' stays exactly the same)
 
