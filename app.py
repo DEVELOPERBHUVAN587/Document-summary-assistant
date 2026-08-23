@@ -367,7 +367,7 @@ def main():
         html, body, [class*="css"] { font-family: 'Inter', sans-serif !important; }
         
         /* Hide Defaults */
-        #MainMenu, header, footer, .stDeployButton { display: none !important; }
+        #MainMenu, footer, .stDeployButton { display: none !important; }
         
         /* App Background */
         .stApp {
